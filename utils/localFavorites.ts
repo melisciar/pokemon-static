@@ -11,8 +11,15 @@ const toggleFavorite = ( id: number ) => {
     localStorage.setItem('favorites', JSON.stringify(favorites))
 }
 
+const existsInFavorites = ( id: number): boolean => {
+    const favorites: number[] = JSON.parse(localStorage.getItem('favorites') || '[]')
+
+    return favorites.includes(id)
+}
+
 const funciones = {
-    toggleFavorite
+    toggleFavorite,
+    existsInFavorites
 }
 
 export default funciones
