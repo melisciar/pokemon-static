@@ -11,7 +11,7 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   const { id, img, name } = pokemon;
 
   const onClick = () => {
-    router.push(`/pokemon/${id}`);
+    router.push(`/name/${name}`);
   };
   return (
     <Card key={id} isHoverable isPressable onPress={onClick}>
