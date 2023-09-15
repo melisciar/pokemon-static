@@ -3,14 +3,19 @@ import { Layout } from "@/components/layouts";
 import { Pokemon } from "@/interfaces";
 import { pokeApi } from "@/api";
 import { Button, Card, CardBody, CardHeader, Image } from "@nextui-org/react";
+import { localFavorites } from "@/utils";
 
 interface Props {
   pokemon: Pokemon;
 }
 
 const PokemonPage: NextPage<Props> = ({ pokemon }) => {
+  const onToggleFavorite = () => {
+    localFavorites.toggleFavorite(pokemon.id);
+  };
+
   return (
-    <Layout title="Algún Pokemon">
+    <Layout title={pokemon.name}>
       <div className="mt-1.5 grid gap-1 grid-cols-12">
         <div className="col-span-12 sm:col-span-4">
           <Card isHoverable className="p-7">
@@ -28,7 +33,11 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
           <Card className="min-h-full">
             <CardHeader className="flex justify-between">
               <h1 className="font-bold text-4xl capitalize">{pokemon.name}</h1>
-              <Button color="secondary" variant="ghost">
+              <Button
+                color="secondary"
+                variant="ghost"
+                onPress={onToggleFavorite}
+              >
                 Guardar en favoritos
               </Button>
             </CardHeader>
